@@ -4,34 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        WindowStyle="None" Background="AliceBlue" 
+        WindowStyle="None" Background="black" 
         Title="MainWindow" Height="350" Width="600" 
         StateChanged="Window_StateChanged" LocationChanged="Window_LocationChanged"
+        UseLayoutRounding="True"
         >
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
     </WindowChrome.WindowChrome>
-    <Border Name="main" BorderThickness="1" BorderBrush="Gray" Margin="0">
+    <Border Name="main" BorderThickness="0" BorderBrush="Black" Margin="0">
         <DockPanel>
-            <!-- Title Bar Area --> 
-            <Border Name="border" DockPanel.Dock="Top" Height="25">
-                
+            <!-- Title Bar Area -->
+            <Border Name="border" DockPanel.Dock="Top" Height="32">
+
                 <Grid>
-                    <Label VerticalContentAlignment="Center" Margin="10,0,105,0" PreviewMouseDown="System_MouseDown" PreviewMouseMove="System_MouseMove">
+                    <Label VerticalContentAlignment="Center" Margin="10,0,105,0" PreviewMouseDown="System_MouseDown" PreviewMouseMove="System_MouseMove" Foreground="White">
                         <TextBlock Text="{Binding Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
                     </Label>
-                    
+
                     <!-- System Button Area -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="White">
-                        
+
                         <StackPanel.Resources>
                             <Style TargetType="{x:Type Button}" x:Key="systemButton">
                                 <Setter Property="Padding" Value="0"/>
-                                <Setter Property="Width" Value="35"/>
-                                <Setter Property="Height" Value="25"/>
+                                <Setter Property="Width" Value="45"/>
+                                <Setter Property="Height" Value="32"/>
                                 <Setter Property="HorizontalAlignment" Value="Right"/>
                                 <Setter Property="VerticalAlignment" Value="Top"/>
-                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Background" Value="black"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type Button}">
@@ -43,62 +44,62 @@
                                 </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="Button.IsMouseOver" Value="True">
-                                        <Setter Property="Button.Background" Value="LightGray" />
+                                        <Setter Property="Button.Background" Value="#414142" />
                                     </Trigger>
                                 </Style.Triggers>
-
                             </Style>
                         </StackPanel.Resources>
-                        
+
                         <Button Click="Mimimize_Click" Style="{StaticResource systemButton}">
                             <Rectangle Width="11"
-                                       Stroke="Black"
-                                       StrokeThickness="0.75"/>
+                                       Stroke="white"
+                                       StrokeThickness="1"/>
                         </Button>
 
                         <Button Click="Maximize_Click" Style="{StaticResource systemButton}">
                             <Grid>
-                                <Rectangle Name="rectMax" Width="11" Height="11"
-                                       Stroke="Black"
-                                       StrokeThickness="0.75"/>
-                                <Canvas Name="rectMin"  Visibility="Hidden">
+                                <Rectangle Name="rectMax" Width="10" Height="10"
+                                       Stroke="white"
+                                       StrokeThickness="1"/>
+                                <Canvas Name="rectMin"  Visibility="Hidden" RenderOptions.EdgeMode="Aliased">
                                     <Polyline Points="2.375,2 2.375,0.375 10.625,0.375 10.625,8.625 9,8.625"
-                                              StrokeThickness="0.75" Stroke="Black"/>
+                                              StrokeThickness="0.75" Stroke="white" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="HighQuality"/>
                                     <Rectangle Width="9" Height="9"
-                                       Stroke="Black"
-                                       StrokeThickness="0.75" Margin="0,2,2,0"/>
+                                       Stroke="white"
+                                       StrokeThickness="1" Margin="0,2,2,0" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="HighQuality" />
                                 </Canvas>
                             </Grid>
                         </Button>
-                        
+
                         <Button Click="Close_Click">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource systemButton}">
                                     <Style.Triggers>
                                         <Trigger Property="Button.IsMouseOver" Value="True">
-                                            <Setter Property="Button.Background" Value="Red" />
+                                            <Setter Property="Button.Background" Value="#E81123" />
                                         </Trigger>
                                     </Style.Triggers>
+                                    <Setter Property="Button.Background" Value="black" />
                                 </Style>
                             </Button.Style>
                             <Canvas Height="25" Width="35">
                                 <Line    
                                     X1="12" Y1="8" 
                                     X2="22" Y2="18"    
-                                    Stroke="Black" StrokeThickness="0.75"/>
+                                    Stroke="white" StrokeThickness="1"/>
                                 <Line    
                                     X1="12" Y1="18"    
                                     X2="22" Y2="8"  
-                                    Stroke="Black" StrokeThickness="0.75"/>
+                                    Stroke="white" StrokeThickness="1"/>
                             </Canvas>
                         </Button>
-                        
+
                     </StackPanel>
                 </Grid>
             </Border>
-            
+
             <!-- Content Area -->
-            <Grid DockPanel.Dock="Bottom">                
+            <Grid DockPanel.Dock="Bottom">
                 <Label Content="Content Area" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="GreenYellow"/>
             </Grid>
         </DockPanel>
