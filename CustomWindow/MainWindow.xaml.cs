@@ -26,7 +26,7 @@ namespace CustomWindow
                 sum += item.WorkingArea.Width;
                 if (sum >= this.Left + this.Width / 2)
                 {
-                    this.MaxHeight = item.WorkingArea.Height;
+                    this.MaxHeight = item.WorkingArea.Height + 7;
                     break;
                 }
             }
